@@ -1,5 +1,6 @@
 import BusinessGrid from "@/components/business_grid";
 import Hero from "@/components/hero";
+import axios from "axios";
 import Head from "next/head";
 
 const Businesses = () => {
@@ -50,4 +51,3 @@ export const getStaticProps = async () => {
     },
   };
 };
-

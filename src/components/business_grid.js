@@ -1,35 +1,35 @@
-import { shorten } from "@/lib/helpers";
+import { imageToUrl, shorten } from "@/lib/helpers";
 import Image from "next/image";
+import Link from "next/link";
 
-const BusinessGrid = () => {
-  return (
-    <div className="card w-96 bg-base-100 shadow-xl tablet:w-[345px] desktop:w-96">
-      <figure>
-        <Image
-          // src={imageToUrl(props.image)}
-          src={"/images/Mobile.png"}
-          height={543}
-          width={928}
-          alt={"props.title"}
-          className=" w-[387px] h-[227px] object-cover"
-        />
-      </figure>
-      <div className="card-body">
-        <div className="avatar">
-          <div className="w-14 rounded-full">
-            <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+const BusinessGrid = (props) => {
+  return props.businessData.data.map((business) => (
+    <Link href={"/businesses/business/" + business.attributes.slug}>
+      <div
+        key={business.id}
+        className="card w-96 h-60 mb-5 bg-base-100 shadow-lg hover:shadow-xl tablet:w-[345px] desktop:w-96"
+      >
+        <div className="card-body">
+          <div className="avatar">
+            <div className="h-14 rounded-full">
+              <Image
+                src={imageToUrl(business.attributes.logo)}
+                // src={"/images/Mobile.png"}
+                height={business.attributes.logo.data.attributes.height}
+                width={business.attributes.logo.data.attributes.width}
+                alt={business.attributes.name + "logo"}
+                className=" w-14 h-14 object-fill"
+              />
+            </div>
           </div>
+          <h2 className="card-title">
+            {shorten(business.attributes.name, 20)}
+          </h2>
+          <p>{shorten(business.attributes.description, 100)}</p>
         </div>
-        <h2 className="card-title">
-          {shorten("sample title", 20)}
-          <div className="badge badge-ghost">
-            {shorten("business name", 10)}
-          </div>
-        </h2>
-        <p>{shorten("sample description", 100)}</p>
       </div>
-    </div>
-  );
+    </Link>
+  ));
 };
 
 export default BusinessGrid;

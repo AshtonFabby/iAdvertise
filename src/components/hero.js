@@ -3,7 +3,7 @@ import Image from "next/image";
 const Hero = (props) => {
   return (
     <div
-      className="hero min-h-[70vh]"
+      className="hero min-h-[70vh] z-10"
       style={{ backgroundImage: `url(${props.image})` }}
     >
       <div className="hero-overlay bg-opacity-60"></div>

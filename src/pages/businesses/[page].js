@@ -1,12 +1,10 @@
 import BusinessGrid from "@/components/business_grid";
 import Hero from "@/components/hero";
 import PaginationItem from "@/components/pagination_item";
-import TopBusinesses from "@/components/top_businesses";
 import axios from "axios";
 import Head from "next/head";
 
-const Businesses = ({ businesses, featured_business }) => {
-  console.log();
+const BusinessesPage = ({ businesses, pageNumber }) => {
   return (
     <>
       <Head>
@@ -29,34 +27,31 @@ const Businesses = ({ businesses, featured_business }) => {
             <BusinessGrid businessData={businesses} />
           </div>
           <PaginationItem
-            pageNumber={1}
+            pageNumber={pageNumber}
             pageRoute="businesses"
             maxPages={businesses.meta.pagination.pageCount}
           />
         </div>
-        <TopBusinesses featured_businessData={featured_business} />
       </main>
     </>
   );
 };
 
-export default Businesses;
+export default BusinessesPage;
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async (pageContext) => {
+  const pageNumber = pageContext.query.page;
+
   const response = await axios.get(
-    `${process.env.STRAPI_PUBLIC_URL}/businesses?pagination[page]=1&pagination[pageSize]=9&populate=*`
-  );
-  const response2 = await axios.get(
-    `${process.env.STRAPI_PUBLIC_URL}/featured-businesses?populate=*`
+    `${process.env.STRAPI_PUBLIC_URL}/businesses?pagination[page]=${pageNumber}&pagination[pageSize]=9&populate=*`
   );
 
   const businesses = await response.data;
-  const featured_business = await response2.data;
 
   return {
     props: {
       businesses: businesses,
-      featured_business: featured_business,
+      pageNumber: pageNumber,
     },
   };
 };

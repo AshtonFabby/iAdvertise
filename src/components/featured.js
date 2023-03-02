@@ -7,6 +7,7 @@ const Featured = (props) => {
       <div className=" grid tablet:grid-cols-2 desktop:grid-cols-3 mt-10">
         {props.featuredData.data.map((feature) => (
           <FeaturedItem
+            key={feature.id}
             title={feature.attributes.title}
             image={feature.attributes.thumbnail}
             description={feature.attributes.description}

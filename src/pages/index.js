@@ -27,6 +27,7 @@ export default function Home({ featured, featured_business }) {
             reach a large audience quickly and cheaply."
         />
         <Featured featuredData={featured} />
+        <div className="mt-10"></div>
         <TopBusinesses featured_businessData={featured_business} />
         {/* <BusinessesSlider /> */}
       </main>

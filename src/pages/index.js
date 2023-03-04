@@ -35,7 +35,7 @@ export default function Home({ featured, featured_business }) {
   );
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const response = await axios.get(
     `${process.env.STRAPI_PUBLIC_URL}/featureds?populate=*`
   );

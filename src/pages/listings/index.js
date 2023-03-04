@@ -25,7 +25,7 @@ const Listings = ({ categories }) => {
 
 export default Listings;
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const response = await axios.get(
     `${process.env.STRAPI_PUBLIC_URL}/categories?populate=*`
   );

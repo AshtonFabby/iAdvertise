@@ -34,7 +34,7 @@ const AllListings = ({ listings, featured, featured_business }) => {
 
 export default AllListings;
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const response = await axios.get(
     `${process.env.STRAPI_PUBLIC_URL}/listings?pagination[page]=1&pagination[pageSize]=9&populate=*`
   );

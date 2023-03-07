@@ -7,7 +7,7 @@ import axios from "axios";
 import Head from "next/head";
 
 const AllListings = ({ listings, featured, featured_business }) => {
-  // console.log(featured_business);
+  console.log(listings);
   return (
     <>
       <Head>
@@ -16,7 +16,7 @@ const AllListings = ({ listings, featured, featured_business }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className=" container">
+      <main className=" container mb-20">
         <TopBusinesses featured_businessData={featured_business} />
         <Featured featuredData={featured} />
         <h1 className=" text-3xl font-bold mt-5">All Listings</h1>
@@ -25,7 +25,7 @@ const AllListings = ({ listings, featured, featured_business }) => {
         <PaginationItem
           pageNumber={1}
           maxPages={listings.meta.pagination.pageCount}
-          pageRoute="listings"
+          pageRoute="all_listings"
         />
       </main>
     </>

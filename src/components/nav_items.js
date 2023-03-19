@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useState, useEffect } from "react";
 
 const NavItems = () => {
@@ -15,12 +16,13 @@ const NavItems = () => {
 
   if (isLoading) return <p>Loading...</p>;
   if (!data) return <p>No Categories</p>;
-  // console.log(data);
   return (
     <>
       {data.data.map((category) => (
         <li key={category.id}>
-          <a>{category.attributes.name}</a>
+          <Link href={`/listings/${category.attributes.slug}`}>
+            {category.attributes.name}
+          </Link>
         </li>
       ))}
     </>

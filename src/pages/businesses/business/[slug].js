@@ -2,8 +2,6 @@ import { imageToUrl } from "@/lib/helpers";
 import axios from "axios";
 import Head from "next/head";
 import Image from "next/image";
-import { Icon } from "@iconify/react";
-import Link from "next/link";
 import BusinessCard from "@/components/business_card";
 import BusinessListingGrid from "@/components/business_listing_grid";
 
@@ -19,7 +17,7 @@ const Business = ({ business }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className=" container">
-        <div className="content desktop:flex gap-5">
+        <div className="content desktop:flex gap-5 mt-5">
           <BusinessCard data={data} />
           <div className="desktop:w-9/12 ">
             <Image

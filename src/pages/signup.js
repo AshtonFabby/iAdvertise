@@ -49,7 +49,7 @@ const SignUp = () => {
   return (
     <>
       <Head>
-        <title>iAdvertise</title>
+        <title>iAdvertise - SignUp</title>
         <meta name="description" content="iAdvertise" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -68,6 +68,7 @@ const SignUp = () => {
               alt="iadvertise logo"
               className=" self-center w-[100px] h-[100px] mb-10"
             />
+            <h1>Sign Up for a free Account</h1>
             {message !== "" ? (
               <div className="alert alert-warning shadow-lg">
                 <div>
@@ -102,16 +103,22 @@ const SignUp = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <input
+              type="password"
+              placeholder="confirm password"
+              className="input w-full input-bordered "
+            />
             <button onClick={LoginUser} className=" btn btn-secondary">
               login
             </button>
             <p className="">
-              I {"don't"} have an account{" "}
+              I {"wan't"} a
               <span className=" font-semibold hover:text-secondary duration-200 ease-in-out">
-                <Link href="/signup" className="">
-                  Sign Up
+                <Link href="#" className="text-accent">
+                  {` Premium `}
                 </Link>
               </span>
+              Account
             </p>
           </div>
         </form>

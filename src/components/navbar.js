@@ -1,11 +1,13 @@
 import { Icon } from "@iconify/react";
+import Cookies from "js-cookie";
 import Link from "next/link";
 import NavItems from "./nav_items";
 const NavBar = () => {
+  const status = Cookies.get("logIn");
   return (
     <nav>
-      <div className="container navbar bg-base-100">
-        <div className="flex-none">
+      <div className="container navbar bg-base-100 justify-between">
+        <div className="flex-none tablet:hidden">
           <div className="dropdown dropdown-hover">
             <button className=" btn btn-ghost">
               <Icon
@@ -19,23 +21,44 @@ const NavBar = () => {
               tabIndex={0}
               className="dropdown-content menu p-2 shadow bg-base-200 rounded-box w-52"
             >
-              <NavItems />
+              {/* <NavItems /> */}
+              <li>
+                <Link href="/">Home</Link>
+              </li>
+              <li>
+                <Link href="/businesses">Businesses</Link>
+              </li>
+              <li>
+                <Link href="/all_listings">Listings</Link>
+              </li>
+              <li>
+                <Link href="/listings">Categories</Link>
+              </li>
+              <li>
+                <Link href="/about">About</Link>
+              </li>
+              <li>
+                <Link href="/contact">Contact</Link>
+              </li>
+              <li>
+                <Link href="/blog">Blog</Link>
+              </li>
             </ul>
           </div>
         </div>
-        <div className="flex-1">
+        <div className="">
           <Link href="/" className="btn btn-ghost normal-case text-xl">
             iAdvertise.store
           </Link>
         </div>
-        <div className="flex-none hidden tablet:block">
+        <div className="w-4/6 hidden tablet:block">
           <input
             type="search"
             placeholder="Search..."
             className="input w-full input-bordered"
           />
         </div>
-        <div className="flex-none">
+        <div className="">
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
@@ -46,15 +69,27 @@ const NavBar = () => {
               tabIndex={0}
               className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-200 rounded-box w-52"
             >
-              <li>
-                <Link href="/" className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
+              {/* <li>
+                <Link href="/pro" className="justify-between">
+                  Login
                 </Link>
-              </li>
-              <li>
-                <Link href="/logout">Logout</Link>
-              </li>
+              </li> */}
+              {status == undefined ? (
+                <>
+                  <li>
+                    <Link href="/login">Login</Link>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <Link href="#">Profile</Link>
+                  </li>
+                  <li>
+                    <Link href="/logout">Logout</Link>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
         </div>
@@ -75,13 +110,13 @@ const NavBar = () => {
               <Link href="/listings">Categories</Link>
             </li>
             <li>
-              <Link href="#">About</Link>
+              <Link href="/about">About</Link>
             </li>
             <li>
-              <Link href="#">Contact</Link>
+              <Link href="/contact">Contact</Link>
             </li>
             <li>
-              <Link href="#">Blog</Link>
+              <Link href="/blog">Blog</Link>
             </li>
           </ul>
         </div>

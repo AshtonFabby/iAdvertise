@@ -1,4 +1,5 @@
-import ListingsGrid from "@/components/listings_grid";
+import ListingsCategoryGrid from "@/components/listings_category_grid";
+// import ListingsGrid from "@/components/listings_grid";
 import axios from "axios";
 import Head from "next/head";
 
@@ -14,8 +15,8 @@ const Category = ({ category }) => {
       </Head>
       <main className="container my-20">
         <h1 className="text-2xl text-center font-medium mb-10">{data.name}</h1>
-        {/* {console.log(data.listings)} */}
-        <ListingsGrid listingsData={data.listings} />
+
+        <ListingsCategoryGrid listingsData={data.listings} />
       </main>
     </>
   );
@@ -27,7 +28,7 @@ export const getServerSideProps = async (pageContext) => {
   const slug = pageContext.query.slug;
 
   const response = await axios.get(
-    `${process.env.STRAPI_PUBLIC_URL}/categories?filters[slug][$eq]=${slug}&populate[1]=listings.thumbnail&populate[0]=sub_categories`
+    `${process.env.STRAPI_PUBLIC_URL}/categories?filters[slug][$eq]=${slug}&populate[1]=listings.thumbnail&populate[0]=sub_categories&populate[2]=listings.business`
   );
 
   const category = await response.data;

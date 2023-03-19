@@ -3,8 +3,9 @@ import axios from "axios";
 import Head from "next/head";
 import Image from "next/image";
 
-const Listing = ({ listings }) => {
-  const data = listings.data[0].attributes;
+const FeaturedPage = ({ featureds }) => {
+  const data = featureds.data[0].attributes;
+  // console.log(data);
   return (
     <>
       <Head>
@@ -22,13 +23,13 @@ const Listing = ({ listings }) => {
               height={data.thumbnail.data.attributes.height}
               width={data.thumbnail.data.attributes.width}
               alt="product image"
-              className=" rounded-2xl w-full h-[400px] object-fit "
+              className=" rounded-2xl w-full h-[400px] object-cover "
             />
           </div>
           <div className="tablet:w-1/2">
-            <div className=" flex justify-between items-center">
-              <h1 className=" text-2xl font-semibold">{data.name}</h1>{" "}
-              <div className="badge badge-primary badge-outline">
+            <div className=" tablet:block desktop:flex flex justify-between items-center">
+              <h1 className=" text-2xl font-semibold">{data.title}</h1>
+              <div className="badge badge-primary badge-outline mt-20 tablet:mt-0">
                 {data.business.data.attributes.name}
               </div>
             </div>
@@ -48,35 +49,25 @@ const Listing = ({ listings }) => {
             </div>
           </div>
         </div>
-
-        {/* FIXME: not getting images from api */}
-        <div className=" grid grid-cols-5">
-          {/* {console.log(data.showcase)} */}
-          {/* {data.showcase.data.map((show) => {
-            <div className="h-32 card w-60 bg-red-400 mt-5">
-              <Image src={imageToUrl(show)} />
-            </div>;
-          })} */}
-        </div>
       </main>
     </>
   );
 };
 
-export default Listing;
+export default FeaturedPage;
 
 export const getServerSideProps = async (pageContext) => {
   const slug = pageContext.query.slug;
 
   const response = await axios.get(
-    `${process.env.STRAPI_PUBLIC_URL}/listings?filters[slug][$eq]=${slug}&populate=*`
+    `${process.env.STRAPI_PUBLIC_URL}/featureds?filters[slug][$eq]=${slug}&populate=*`
   );
 
-  const listings = await response.data;
+  const featureds = await response.data;
 
   return {
     props: {
-      listings: listings,
+      featureds: featureds,
     },
   };
 };

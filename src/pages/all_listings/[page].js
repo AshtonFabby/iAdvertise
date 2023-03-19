@@ -6,7 +6,6 @@ import axios from "axios";
 import Head from "next/head";
 
 const AllListings = ({ listings, featured, featured_business }) => {
-  console.log(listings);
   return (
     <>
       <Head>
@@ -17,9 +16,9 @@ const AllListings = ({ listings, featured, featured_business }) => {
       </Head>
       <main className=" container mb-20">
         <TopBusinesses featured_businessData={featured_business} />
-        <Featured featuredData={featured} />
+        <Featured featuredData={featured} route="featured" />
         <h1 className=" text-3xl font-bold mt-5">All Listings</h1>
-        <ListingsGrid listingsData={listings} />
+        <ListingsGrid listingsData={listings} route="listing" />
         <div className=" my-5"></div>
         <PaginationItem
           pageNumber={listings.meta.pagination.page}

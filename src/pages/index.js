@@ -1,8 +1,6 @@
 import Head from "next/head";
-import Image from "next/image";
 import { Inter } from "@next/font/google";
 import Hero from "@/components/hero";
-import BusinessesSlider from "@/components/businesses_slider";
 import Featured from "@/components/featured";
 import TopBusinesses from "@/components/top_businesses";
 import axios from "axios";
@@ -26,10 +24,9 @@ export default function Home({ featured, featured_business }) {
             products, and services? By placing ads here website, businesses can
             reach a large audience quickly and cheaply."
         />
-        <Featured featuredData={featured} />
+        <Featured featuredData={featured} route="featured" />
         <div className="mt-10"></div>
         <TopBusinesses featured_businessData={featured_business} />
-        {/* <BusinessesSlider /> */}
       </main>
     </>
   );

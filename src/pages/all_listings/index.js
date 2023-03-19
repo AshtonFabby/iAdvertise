@@ -1,13 +1,11 @@
 import Featured from "@/components/featured";
 import ListingsGrid from "@/components/listings_grid";
-import Loading from "@/components/loading";
 import PaginationItem from "@/components/pagination_item";
 import TopBusinesses from "@/components/top_businesses";
 import axios from "axios";
 import Head from "next/head";
 
 const AllListings = ({ listings, featured, featured_business }) => {
-  console.log(listings);
   return (
     <>
       <Head>
@@ -18,9 +16,9 @@ const AllListings = ({ listings, featured, featured_business }) => {
       </Head>
       <main className=" container mb-20">
         <TopBusinesses featured_businessData={featured_business} />
-        <Featured featuredData={featured} />
-        <h1 className=" text-3xl font-bold mt-5">All Listings</h1>
-        <ListingsGrid listingsData={listings} />
+        <Featured featuredData={featured} route="featured" />
+        <h1 className=" text-3xl font-bold mt-5 px-5">All Listings</h1>
+        <ListingsGrid listingsData={listings} route="listing" />
         <div className=" my-5"></div>
         <PaginationItem
           pageNumber={1}

@@ -4,10 +4,12 @@ const Featured = (props) => {
   return (
     <div className=" container mt-20 p-4">
       <h1 className=" text-3xl font-bold">Featured</h1>
-      <div className=" grid tablet:grid-cols-2 desktop:grid-cols-3 mt-10">
+      <div className=" grid gap-5 tablet:grid-cols-2 desktop:grid-cols-3 mt-10">
         {props.featuredData.data.map((feature) => (
           <FeaturedItem
+            route={props.route}
             key={feature.id}
+            slug={feature.attributes.slug}
             title={feature.attributes.title}
             image={feature.attributes.thumbnail}
             description={feature.attributes.description}

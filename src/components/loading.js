@@ -1,4 +1,4 @@
-const Loading = () => {
+const LoadingPage = () => {
   return (
     <>
       <div className=" h-screen w-full absolute top-0 z-50 bg-base-100 flex flex-col gap-10 justify-center items-center">
@@ -13,4 +13,4 @@ const Loading = () => {
   );
 };
 
-export default Loading;
+export default LoadingPage;

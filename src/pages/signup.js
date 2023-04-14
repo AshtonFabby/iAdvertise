@@ -13,19 +13,21 @@ const SignUp = () => {
   };
 
   const router = useRouter();
-  const [identifier, setIdentifier] = useState("");
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
-  const LoginUser = async () => {
-    if (identifier == "" || password == "") {
-      setMessage("username or password can't be empty");
+  const signUpUser = async () => {
+    if (userName == "" || password == "" || email == "") {
+      setMessage("Please fill in all fields");
     } else {
       try {
         const user = await axios.post(
-          `${process.env.NEXT_PUBLIC_STRAPI_URL}/auth/local`,
+          `${process.env.NEXT_PUBLIC_STRAPI_URL}/auth/local/register`,
           {
-            identifier: identifier,
+            userName: userName,
+            email: email,
             password: password,
           }
         );
@@ -41,7 +43,7 @@ const SignUp = () => {
       } catch (error) {
         console.log(error);
 
-        setMessage("username or password is incorrect");
+        setMessage("Something went wrong");
       }
     }
   };
@@ -91,10 +93,17 @@ const SignUp = () => {
             ) : null}
             <input
               type="text"
-              placeholder=" username or email"
+              placeholder="username"
               className="input w-full input-bordered"
-              value={identifier}
-              onChange={(e) => setIdentifier(e.target.value)}
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+            />
+            <input
+              type="email"
+              placeholder="email"
+              className="input w-full input-bordered"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <input
               type="password"
@@ -108,7 +117,7 @@ const SignUp = () => {
               placeholder="confirm password"
               className="input w-full input-bordered "
             />
-            <button onClick={LoginUser} className=" btn btn-secondary">
+            <button onClick={signUpUser} className=" btn btn-secondary">
               login
             </button>
             <p className="">

@@ -9,16 +9,17 @@ const ListingsGrid = (props) => {
     // <></>
     <div className="grid px-4 gap-5 tablet:grid-cols-2 desktop:grid-cols-3 mt-10">
       {listings.map((listing) => (
-        <Link href={`/${props.route}/${listing.attributes.slug}`}>
-          <div
-            key={listing.id}
-            className="card h-[440px] w-96 bg-base-100 border border-base-300 tablet:w-[345px] desktop:w-96"
-          >
+        <Link
+          key={listing.id}
+          href={`/${props.route}/${listing.attributes.slug}`}
+        >
+          <div className="card h-[440px] w-96 bg-base-100 border border-base-300 tablet:w-[345px] desktop:w-96">
             <figure>
               <Image
                 src={imageToUrl(listing.attributes.thumbnail)}
-                height={543}
-                width={928}
+                height="0"
+                width="0"
+                sizes="100vw"
                 alt={listing.attributes.name}
                 className=" w-[387px] h-[227px] object-fill"
               />

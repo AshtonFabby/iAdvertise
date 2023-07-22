@@ -9,8 +9,9 @@ const FeaturedItem = (props) => {
         <figure>
           <Image
             src={imageToUrl(props.image)}
-            height={543}
-            width={928}
+            height="0"
+            width="0"
+            sizes="100vw"
             alt={props.title}
             className=" w-[387px] h-[227px] object-fill"
           />

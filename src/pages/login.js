@@ -58,13 +58,14 @@ const LogIn = () => {
         <form
           method="POST"
           onSubmit={handleSubmit}
-          className=" card desktop:w-1/2 mx-auto h-[63vh]"
+          className=" card desktop:w-1/2 mx-auto h-min]"
         >
-          <div className="card-body">
+          <div className="card-body my-10">
             <Image
               src="/images/logo-app.png"
-              height={100}
-              width={100}
+              height="0"
+              width="0"
+              sizes="100vw"
               alt="iadvertise logo"
               className=" self-center w-[100px] h-[100px] mb-10"
             />

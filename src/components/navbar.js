@@ -2,8 +2,19 @@ import { Icon } from "@iconify/react";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import NavItems from "./nav_items";
+import axios from "axios";
+import { useRouter } from "next/router";
 const NavBar = () => {
   const status = Cookies.get("logIn");
+  const router = useRouter();
+
+  const logOut = () => {
+    axios.get("/api/logout");
+    Cookies.remove("logIn");
+    Cookies.remove("uid");
+    router.push("/login");
+  };
+
   return (
     <nav>
       <div className="container navbar bg-base-100 justify-between">
@@ -58,41 +69,30 @@ const NavBar = () => {
             className="input w-full input-bordered"
           />
         </div>
-        <div className="">
-          <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-              <div className="w-10 rounded-full">
-                <Icon icon="mingcute:user-3-fill" width="40" height="40" />
-              </div>
-            </label>
-            <ul
-              tabIndex={0}
-              className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-200 rounded-box w-52"
-            >
-              {/* <li>
-                <Link href="/pro" className="justify-between">
-                  Login
-                </Link>
-              </li> */}
-              {status == undefined ? (
-                <>
-                  <li>
-                    <Link href="/login">Login</Link>
-                  </li>
-                </>
-              ) : (
-                <>
-                  <li>
-                    <Link href="#">Profile</Link>
-                  </li>
-                  <li>
-                    <Link href="/logout">Logout</Link>
-                  </li>
-                </>
-              )}
-            </ul>
+        {status ? (
+          <div className="">
+            <div className="dropdown dropdown-end">
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 rounded-full">
+                  <Icon icon="mingcute:user-3-fill" width="40" height="40" />
+                </div>
+              </label>
+              <ul
+                tabIndex={0}
+                className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-200 rounded-box w-52"
+              >
+                <li>
+                  <Link href="/profile">Profile</Link>
+                </li>
+                <li>
+                  <button onClick={logOut}>Logout</button>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
+        ) : (
+          <Link href="/login">Log in</Link>
+        )}
       </div>
       <div className="bg-base-200">
         <div className=" container hidden tablet:block">

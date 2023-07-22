@@ -18,8 +18,8 @@ const BusinessItem = (props) => {
           <div className=" carousel-item w-full h-[225px]" key={bannerImage.id}>
             <Image
               src={imageToUrl(bannerImage.attributes.mobile_banner)}
-              width={375}
-              height={225}
+              width="0"
+              height="0"
               alt="business banner"
               // className=" w-[375px] h-[225px] object-fit"
             />
@@ -37,8 +37,9 @@ const BusinessItem = (props) => {
           <div className=" carousel-item w-full h-[438px]" key={bannerImage.id}>
             <Image
               src={imageToUrl(bannerImage.attributes.desktop_banner)}
-              width={1366}
-              height={438}
+              width="0"
+              height="0"
+              sizes="100vw"
               alt="business banner"
               // className=" w-[1366px] h-[438px] object-fit"
             />

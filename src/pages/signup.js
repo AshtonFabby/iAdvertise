@@ -26,17 +26,14 @@ const SignUp = () => {
         const user = await axios.post(
           `${process.env.NEXT_PUBLIC_STRAPI_URL}/auth/local/register`,
           {
-            userName: userName,
+            username: userName,
             email: email,
             password: password,
           }
         );
 
         if (user.status === 200) {
-          Cookies.set("uid", user.data.user.id, { expires: 30 });
-          Cookies.set("logIn", true, { expires: 30 });
-          axios.post("/api/login", { jwt: user.data.jwt });
-          router.push("/");
+          router.push("/login");
         } else {
           setMessage("something went wrong");
         }
@@ -60,13 +57,14 @@ const SignUp = () => {
         <form
           method="POST"
           onSubmit={handleSubmit}
-          className=" card desktop:w-1/2 mx-auto h-[63vh]"
+          className=" card desktop:w-1/2 mx-auto h-min my-10"
         >
           <div className="card-body">
             <Image
               src="/images/logo-app.png"
-              height={100}
-              width={100}
+              height="0"
+              width="0"
+              sizes="100vw"
               alt="iadvertise logo"
               className=" self-center w-[100px] h-[100px] mb-10"
             />

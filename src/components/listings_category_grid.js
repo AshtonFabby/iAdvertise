@@ -13,8 +13,9 @@ const ListingsCategoryGrid = (props) => {
             <figure>
               <Image
                 src={imageToUrl(listing.attributes.thumbnail)}
-                height={543}
-                width={928}
+                height="0"
+                width="0"
+                sizes="100vw"
                 alt={listing.attributes.name}
                 className=" w-[387px] h-[227px] object-fill"
               />

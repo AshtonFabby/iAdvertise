@@ -9,8 +9,9 @@ const BusinessCard = (props) => {
     <div className="card desktop:w-3/12 bg-base-100 border border-base-200 h-min">
       <figure className="px-10 pt-10">
         <Image
-          width={130}
-          height={130}
+          height="0"
+          width="0"
+          sizes="100vw"
           src={imageToUrl(data.logo)}
           alt="logo"
           className=" rounded-full w-[130px] h-[130px] object-fill"

@@ -19,8 +19,9 @@ const Listing = ({ listings }) => {
           <div className=" tablet:w-1/2 ">
             <Image
               src={imageToUrl(data.thumbnail)}
-              height={data.thumbnail.data.attributes.height}
-              width={data.thumbnail.data.attributes.width}
+              height="0"
+              width="0"
+              sizes="100vw"
               alt="product image"
               className=" rounded-2xl w-full h-[400px] object-fit "
             />

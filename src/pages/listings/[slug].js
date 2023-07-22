@@ -14,7 +14,7 @@ const Category = ({ category }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="container my-20">
-        <h1 className="text-2xl text-center font-medium mb-10">{data.name}</h1>
+        <h1 className="text-2xl text-center font-medium mb-5">{data.name}</h1>
 
         <ListingsCategoryGrid listingsData={data.listings} />
       </main>

@@ -4,19 +4,20 @@ import Link from "next/link";
 
 const BusinessGrid = (props) => {
   return props.businessData.data.map((business) => (
-    <Link href={"/businesses/business/" + business.attributes.slug}>
-      <div
-        key={business.id}
-        className="card w-96 h-60 mb-5 bg-base-100 shadow-lg hover:shadow-xl tablet:w-[345px] desktop:w-96"
-      >
+    <Link
+      key={business.id}
+      href={"/businesses/business/" + business.attributes.slug}
+    >
+      <div className="card w-96 h-60 mb-5 bg-base-100 shadow-lg hover:shadow-xl tablet:w-[345px] desktop:w-96">
         <div className="card-body">
           <div className="avatar">
             <div className="h-14 rounded-full">
               <Image
                 src={imageToUrl(business.attributes.logo)}
                 // src={"/images/Mobile.png"}
-                height={business.attributes.logo.data.attributes.height}
-                width={business.attributes.logo.data.attributes.width}
+                height="0"
+                width="0"
+                sizes="100vw"
                 alt={business.attributes.name + "logo"}
                 className=" w-14 h-14 object-fill"
               />
